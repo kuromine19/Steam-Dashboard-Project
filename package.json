@@ -1,0 +1,5 @@
+{
+  "dependencies": {
+    "chartjs-chart-treemap": "^2.3.0"
+  }
+}

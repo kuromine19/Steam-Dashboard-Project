@@ -1,0 +1,68 @@
+<html>
+    <head>
+        <title>Dashboard</title>
+        <style>
+            .chart {
+                display: none;
+            }
+
+            .selectChartButton {
+                background-color: white;
+                color: green;
+                border-color: green;
+            }
+
+            .selectChartButton.selected {
+                background-color: green;
+                color: white;
+            }
+        </style>
+    </head>
+
+    <body>
+        <button onclick="showChart(1);" id="button1" class="selectChartButton selected">Chart 1</button>
+        <button onclick="showChart(2);" id="button2" class="selectChartButton">Chart 2</button>
+        <button onclick="showChart(3);" id="button3" class="selectChartButton">Chart 3</button>
+        <button onclick="showChart(4);" id="button4" class="selectChartButton">Chart 4</button>
+        <button onclick="showChart(5);" id="button5" class="selectChartButton">Chart 5</button>
+
+        {% if plot1 %}
+            {{ plot1|safe }}
+        {% endif %}
+
+        {% if plot2 %}
+            {{ plot2|safe }}
+        {% endif %}
+
+        {% if plot3 %}
+            {{ plot3|safe }}
+        {% endif %}
+
+        {% if plot4 %}
+            {{ plot4|safe }}
+        {% endif %}
+
+        {% if plot5 %}
+            {{ plot5|safe }}
+        {% endif %}
+    </body>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"
+            integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g==" 
+            crossorigin="anonymous" 
+            referrerpolicy="no-referrer"
+    ></script>
+    <script>
+        $(document).ready(function() {
+            $('.plotly-graph-div').filter(function() {
+                return $(this).attr('id') != '1';
+            }).css('display', 'none');
+        })
+        function showChart(id) {
+            $('.plotly-graph-div').css('display', 'none');
+            $('button').removeClass('selected');
+            $('#'+id).css('display', 'block');
+            $('#button'+id).addClass('selected');
+        }
+    </script>
+</html>

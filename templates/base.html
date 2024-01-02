@@ -1,0 +1,200 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>{% block title %}{% endblock %}</title>
+    {% block stylesheet %}
+    {% endblock %}
+    <!-- plugins:css -->
+    <link rel="stylesheet" href="{% static 'assets/vendors/mdi/css/materialdesignicons.min.css' %}">
+    <link rel="stylesheet" href="{% static 'assets/vendors/css/vendor.bundle.base.css' %}">
+    <!-- endinject -->
+    <!-- Plugin css for this page -->
+    <link rel="stylesheet" href="{% static 'assets/vendors/jvectormap/jquery-jvectormap.css' %}">
+    <link rel="stylesheet" href="{% static 'assets/vendors/flag-icon-css/css/flag-icon.min.css' %}">
+    <link rel="stylesheet" href="{% static 'assets/vendors/owl-carousel-2/owl.carousel.min.css' %}">
+    <link rel="stylesheet" href="{% static 'assets/vendors/owl-carousel-2/owl.theme.default.min.css' %}">
+    <!-- End plugin css for this page -->
+    <!-- inject:css -->
+    <!-- endinject -->
+    <!-- Layout styles -->
+    <link rel="stylesheet" href="{% static 'assets/css/style.css' %}">
+    <!-- End layout styles -->
+    <link rel="shortcut icon" href="{% static 'assets/images/favicon.png' %}" />
+    <style>
+      .navbar-nav > li{
+        margin-left:15px !important; 
+        padding-left:15px !important;
+      }
+
+      .navbar-nav {
+        right: 0;
+      }
+      .sidebar .brand-logo
+{position:relative;
+    color: aqua !important;
+    text-shadow: 0 0 3px #0E8388,
+    0 0 6px #0E8388,
+    0 0 9px #0E8388,
+    0 0 12px #0E8388,
+    0 0 18px #0E8388;
+    font-weight:bolder;
+    left:50%;
+    transform:translateX(-25%)
+    }      
+    .sidebar .sidebar-brand-wrapper {
+    border-bottom:2px solid #0E8388;
+    }
+    </style>
+  </head>
+  <body>
+    <div class="container-scroller">
+      <!-- partial:partials/_sidebar.html -->
+      <nav class="sidebar sidebar-offcanvas" id="sidebar">
+        <div class="sidebar-brand-wrapper d-none d-lg-flex align-items-center justify-content-center fixed-top">
+          <a class="sidebar-brand brand-logo" href="dashboard.html">AA++</a>
+          <a class="sidebar-brand brand-logo-mini" href="dashboard.html">D</a>
+        </div>
+        <ul class="nav">
+          <li class="nav-item nav-category">
+            <span class="nav-link">Navigation</span>
+          </li>
+          <li class="nav-item menu-items">
+            <a class="nav-link" href="dashboard.html">
+              <span class="menu-icon">
+                <i class="mdi mdi-speedometer"></i>
+              </span>
+              <span class="menu-title">DASHBOARD</span>
+            </a>
+          </li>
+        </ul>
+      </nav>
+      <!-- partial -->
+      <div class="container-fluid page-body-wrapper">
+        <!-- partial:partials/_navbar.html -->
+        <nav class="navbar p-0 fixed-top d-flex flex-row">
+          <div class="navbar-brand-wrapper d-flex d-lg-none align-items-center justify-content-center">
+            <a class="navbar-brand brand-logo-mini" href="index.html"><img src="{% static 'assets/images/logo-mini.svg' %}" alt="logo" /></a>
+          </div>
+          <div class="navbar-menu-wrapper navbar-expand-sm flex-grow d-flex align-items-stretch">
+            <button class="navbar-toggler navbar-toggler align-self-center" type="button" data-toggle="minimize">
+              <span class="mdi mdi-menu"></span>
+            </button>
+            <ul class="navbar-nav w-100">
+              <li class="nav-item">
+                <div class="dropdown" id="price-btn">
+                  <button 
+                    class="btn btn-primary dropdown-toggle" 
+                    type="button" id="dropdownMenuButton1" 
+                    data-bs-toggle="dropdown" 
+                    aria-haspopup="true" 
+                    aria-expanded="false">
+                    Price
+                  </button>
+                  <div class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                    <a class="dropdown-item">Free</a>
+                    <a class="dropdown-item">Cost</a>
+                    <a class="dropdown-item">Both</a>
+                  </div>
+                </div>
+              </li>
+
+              <li class="nav-item">
+                <div class="dropdown" id="genre-btn">
+                  <button 
+                    class="btn btn-primary dropdown-toggle" 
+                    type="button" id="dropdownMenuButton2" 
+                    data-bs-toggle="dropdown" 
+                    aria-haspopup="true" 
+                    aria-expanded="false">
+                    Genre
+                  </button>
+                  <div class="dropdown-menu" aria-labelledby="dropdownMenuButton2"> <!--style="
+                    overflow: hidden;
+                    overflow-y: auto;
+                    max-height: 200px;
+                  "-->
+                    <a class="dropdown-item" href="#">All</a>
+                    {% if genre %}
+                      {% for i in genre %}
+                      <a class="dropdown-item" href="#">{{i}}</a>
+                      {% endfor %}
+                    {% endif %}
+                  </div>
+                </div>
+              </li>
+
+              <li class="nav-item">
+                <div class="dropdown" id="time-btn">
+                  <button 
+                    class="btn btn-primary dropdown-toggle" 
+                    type="button" id="dropdownMenuButton3" 
+                    data-bs-toggle="dropdown" 
+                    aria-haspopup="true" 
+                    aria-expanded="false">
+                    Time
+                  </button>
+                  <div class="dropdown-menu" aria-labelledby="dropdownMenuButton3">
+                    <a class="dropdown-item">Day</a>
+                    <a class="dropdown-item">Week</a>
+                    <a class="dropdown-item">Month</a>
+                  </div>
+                </div>
+              </li>
+            </ul>
+            <button class="navbar-toggler navbar-toggler-right d-lg-none align-self-center" type="button" data-toggle="offcanvas">
+              <span class="mdi mdi-format-line-spacing"></span>
+            </button>
+          </div>
+        </nav>
+        <!-- partial -->
+        <div class="main-panel">
+          <div class="content-wrapper">
+            {% block content_wrapper %}{% endblock %}
+          </div>
+          <!-- content-wrapper ends -->
+          <!-- partial:partials/_footer.html -->
+          <footer class="footer">
+            <!-- <div class="d-sm-flex justify-content-center justify-content-sm-between">
+              <span class="text-muted d-block text-center text-sm-left d-sm-inline-block">Copyright © bootstrapdash.com 2021</span>
+              <span class="float-none float-sm-right d-block mt-1 mt-sm-0 text-center"> Free <a href="https://www.bootstrapdash.com/bootstrap-admin-template/" target="_blank">Bootstrap admin template</a> from Bootstrapdash.com</span>
+            </div> -->
+          </footer>
+          <!-- partial -->
+        </div>
+        <!-- main-panel ends -->
+      </div>
+      <!-- page-body-wrapper ends -->
+    </div>
+    <!-- container-scroller -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js" integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chartjs-chart-treemap@2.3.0/dist/chartjs-chart-treemap.min.js"></script>
+    <!-- plugins:js -->
+    <script src="{% static 'assets/vendors/js/vendor.bundle.base.js' %}" ></script>
+    <!-- endinject -->
+    <!-- Plugin js for this page -->
+    <!-- <script  src="{% static 'assets/vendors/chart.js/Chart.min.js' %}"></script> -->
+    <script  src="{% static 'assets/vendors/progressbar.js/progressbar.min.js' %}"></script>
+    <script  src="{% static 'assets/vendors/jvectormap/jquery-jvectormap.min.js' %}"></script>
+    <script  src="{% static 'assets/vendors/jvectormap/jquery-jvectormap-world-mill-en.js' %}"></script>
+    <script  src="{% static 'assets/vendors/owl-carousel-2/owl.carousel.min.js' %}"></script>
+    <script  src="{% static 'assets/js/jquery.cookie.js' %}" ></script>
+    <!-- End plugin js for this page -->
+    <!-- inject:js -->
+    <script  src="{% static 'assets/js/off-canvas.js' %}"></script>
+    <script  src="{% static 'assets/js/hoverable-collapse.js' %}"></script>
+    <script  src="{% static 'assets/js/misc.js' %}"></script>
+    <script  src="{% static 'assets/js/settings.js' %}"></script>
+    <script  src="{% static 'assets/js/todolist.js' %}"></script>
+    <!-- endinject -->
+    <!-- Custom js for this page -->
+    <script  src="{% static 'assets/js/dashboard.js' %}"></script>
+    {% block add_script %}{% endblock %}
+    <!-- End custom js for this page -->
+  </body>
+</html>
+
